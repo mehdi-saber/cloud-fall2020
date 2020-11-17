@@ -1,7 +1,23 @@
+body {
+    margin: 0 !important;
+}
+
+.btn {
+    border: 2px solid black;
+    background-color: white;
+    color: black;
+    border-radius: 5px;
+    padding: 5px 23px;
+    height: 32px;
+}
+
 .dsh-table {
     border: solid black;
 }
 
-.dsh-table * {
+.dsh-table td, .dsh-table th {
     border: solid black;
+    text-align: center;
+    padding: 10px;
+
 }

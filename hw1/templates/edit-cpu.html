@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>change cpu</title>
+    <link rel="stylesheet" href="/css/global.css">
+    <link rel="stylesheet" href="/css/edit-cpu.css">
+</head>
+<body>
+<form action="/change-cpu/" method="post" enctype="application/x-www-form-urlencoded">
+    <div id="full-wrapper">
+        <div id="center-wrapper">
+            <div class="cpu-field">
+                <p class="cpu-field-label">Cores:</p>
+                <input type="text" name="cores" value="{{ current_cpu }}" class="cpu-field-input">
+            </div>
+            <input type="hidden" name="vm-name" value="{{ vm_name }}">
+            <div id="cpu-submit-wrapper">
+                <button id="cpu-submit-btn" class="btn">Confirm</button>
+                <button onclick="location.href='/';" type="button" id="cpu-cancel-btn" class="btn">
+                    Cancel
+                </button>
+            </div>
+            {% for message in messages %}
+                <p style="color: red">{{ message }}</p>
+            {% endfor %}
+        </div>
+    </div>
+</form>
+
+</body>
+</html>

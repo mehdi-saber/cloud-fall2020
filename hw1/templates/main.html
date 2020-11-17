@@ -7,22 +7,38 @@
     <link rel="stylesheet" href="/css/main.css">
 </head>
 <body>
-<table class="dsh-table">
-    <tr>
-        <th>name</th>
-        <th>state</th>
-        <th>cpu</th>
-        <th>memory</th>
-    </tr>
-    {% for vm in vms_info %}
+<div class="main-page">
+    <table class="dsh-table">
         <tr>
-            <td>{{ vm['name'] }}</td>
-            <td>{{ vm['state'] }}</td>
-            <td>{{ vm['cpu'] }}</td>
-            <td>{{ vm['memory'] }}</td>
+            <th>name</th>
+            <th>state</th>
+            <th>cpu</th>
+            <th>memory</th>
+            <th>last change</th>
+            <th>operations</th>
         </tr>
-    {% endfor %}
-</table>
-<button></button>
+        {% for vm in vms_info %}
+            <tr>
+                <td>{{ vm['name'] }}</td>
+                <td>{{ vm['state'] }}</td>
+                <td>{{ vm['cpu'] }}</td>
+                <td>{{ vm['memory'] }}</td>
+                <td>{{ vm['state_since'] }}</td>
+                <td>
+                    {% if vm['state']!='running' %}
+                        <a href="/start/{{ vm['name'] }}">start</a>
+                    {% else %}
+                        <a href="/power-off/{{ vm['name'] }}">power-off</a>
+                    {% endif %}
+                    <a href="/change-ram/{{ vm['name'] }}">edit-ram</a>
+                    <a href="/change-cpu/{{ vm['name'] }}">edit-cpu</a>
+                    <a href="/delete/{{ vm['name'] }}">delete</a>
+                    <a href="/clone/{{ vm['name'] }}">clone</a>
+                </td>
+            </tr>
+        {% endfor %}
+    </table>
+    <button onClick="window.location.reload();">Refresh</button>
+</div>
 </body>
 </html>
