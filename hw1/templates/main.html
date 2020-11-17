@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>dashboard</title>
+    <link rel="stylesheet" href="/css/global.css">
+    <link rel="stylesheet" href="/css/main.css">
+</head>
+<body>
+<table class="dsh-table">
+    <tr>
+        <th>name</th>
+        <th>state</th>
+        <th>cpu</th>
+        <th>memory</th>
+    </tr>
+    {% for vm in vms_info %}
+        <tr>
+            <td>{{ vm['name'] }}</td>
+            <td>{{ vm['state'] }}</td>
+            <td>{{ vm['cpu'] }}</td>
+            <td>{{ vm['memory'] }}</td>
+        </tr>
+    {% endfor %}
+</table>
+<button></button>
+</body>
+</html>

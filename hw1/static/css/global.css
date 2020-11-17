@@ -1,0 +1,7 @@
+.dsh-table {
+    border: solid black;
+}
+
+.dsh-table * {
+    border: solid black;
+}
