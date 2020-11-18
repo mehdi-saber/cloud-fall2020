@@ -1,6 +1,6 @@
 from flask import Flask, render_template, redirect, request
 
-from utils import vms_list, vm_info, vm_stop, vm_start, vm_change_memory, vm_change_cpu, vm_delete, vm_clone
+from utils import vms_list, vm_info, vm_stop, vm_start, vm_change_memory, vm_change_cpu, vm_delete, vm_clone, vm_ssh
 
 app = Flask(__name__
             , static_url_path='',
@@ -95,11 +95,31 @@ def change_vm_clone(vm_name):
 def change_vm_clone_post():
     vm_source = request.form['vm-source']
     vm_new = request.form['vm-new']
-    # info = vm_info(vm_source)
-    # if info['state'] != 'powered off':
-    #     vm_stop(vm_source)
+    info = vm_info(vm_source)
+    if info['state'] != 'powered off':
+        vm_stop(vm_source)
     vm_clone(vm_source, vm_new)
     return redirect("/", code=302)
+
+
+@app.route('/ssh/<vm_name>', methods=['GET'])
+def ssh_vm(vm_name):
+    messages = []
+    info = vm_info(vm_name)
+    if info['state'] == 'powered off':
+        messages.append("Vm is powered off it will be running for executing commands!")
+    return render_template('ssh.html', vm_name=vm_name, messages=messages)
+
+
+@app.route('/ssh/', methods=['POST'])
+def ssh_vm_post():
+    vm_name = request.form['vm-name']
+    command = request.form['command']
+    info = vm_info(vm_name)
+    if info['state'] == 'powered off':
+        vm_start(vm_name)
+    messages = [vm_ssh(vm_name, command)]
+    return render_template('ssh.html', vm_name=vm_name, messages=messages)
 
 
 if __name__ == '__main__':

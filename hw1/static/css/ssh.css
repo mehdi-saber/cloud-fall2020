@@ -1,0 +1,47 @@
+#full-wrapper {
+    display: flex;
+    height: 100vh;
+    justify-content: center;
+    align-items: center;
+}
+
+#center-wrapper {
+    display: flex;
+    flex-direction: column;
+    width: 350px;
+    border: solid;
+    padding: 20px;
+}
+
+.ssh-field {
+    display: flex;
+}
+
+.ssh-field {
+    display: flex;
+    align-items: center;
+    margin: 5px 0;
+}
+
+.ssh-field-input {
+    flex-grow: 2;
+    height: 30px;
+    border: solid;
+}
+
+.ssh-field-label {
+    width: 100px;
+    padding: 0 10px 0 0;
+}
+
+#ssh-submit-wrapper {
+    flex-direction: row-reverse;
+    margin-top: 10px;
+    display: flex !important;
+}
+
+#ssh-submit-btn {
+}
+
+#ssh-cancel-btn {
+}
