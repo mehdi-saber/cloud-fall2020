@@ -10,9 +10,9 @@ import org.apache.hadoop.fs.Path;
 import org.apache.hadoop.io.*;
 
 public class Matrix {
-    final static int m=1000;
-    final static int n=1000;
-    final static int p=1000;
+    final static int m=10;
+    final static int n=10;
+    final static int p=10;
     static class Reduce extends Reducer<Text, Text, Text, Text> {
         public void reduce(Text key, Iterable<Text> values, Context context)throws IOException, InterruptedException {
             String[] value;
@@ -53,14 +53,14 @@ public class Matrix {
             Text outVal = new Text();
             if (values[0].equals("A")) {
                 for (int k = 0; k < p; k++) {
-                    outVal.set("A" + "," + values[2] + "," + values[3]);
                     outKey.set(values[1] + "," + k);
+                    outVal.set("A" + "," + values[2] + "," + values[3]);
                     context.write(outKey, outVal);
                 }
             } else if(values[0].equals("B")){
                 for (int i = 0; i < m; i++) {
-                    outVal.set("B," + values[1] + "," + values[3]);
                     outKey.set(i + "," + values[2]);
+                    outVal.set("B," + values[1] + "," + values[3]);
                     context.write(outKey, outVal);
                 }
             }

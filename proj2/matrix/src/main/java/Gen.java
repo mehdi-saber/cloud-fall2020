@@ -6,9 +6,9 @@ public class Gen {
         Random random = new Random();
         FileOutputStream fs = new FileOutputStream("test.txt");
         PrintStream out = new PrintStream(fs);
-        int m=1000;
-        int n=1000;
-        int p=1000;
+        int m=10;
+        int n=10;
+        int p=10;
         for (int i = 0; i < m; i++) {
             for (int j = 0; j < n; j++) {
                 int r_int = random.nextInt(100);

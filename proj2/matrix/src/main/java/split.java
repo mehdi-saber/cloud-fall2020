@@ -14,7 +14,7 @@ public class split {
         for (int i = 0; in.hasNext(); i++) {
             FileOutputStream fs = new FileOutputStream("test/test"+i);
             PrintStream out = new PrintStream(fs);
-            for (int j = 0; j < 10000&&in.hasNext(); j++) {
+            for (int j = 0; j < 50&&in.hasNext(); j++) {
                 out.println(in.nextLine());
             }
             out.close();
